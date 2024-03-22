@@ -1,29 +1,27 @@
-export interface HospitalItem {
+export interface DentistItem {
     _id: string,
     name: string,
-    address: string,
-    district: string,
-    province: string,
-    postalcode: string,
-    tel: string,
-    picture: string,
-    __v: number,
+    years_of_experience: number,
+    area_of_expertise: string,
+    picture: string;
+    appointments: Appointment[],
     id: string
   }
   
-export interface HospitalJson {
+export interface DentistJson {
     success: boolean,
     count: number,
     pagination: Object,
-    data: HospitalItem[]
+    data: DentistItem[]
 }
 
-export interface BookingItem {
-    name: string,
-    surname: string,
-    id: string,
-    hospital: string,
-    bookDate: string
+interface Appointment {
+  _id: string;
+  apptDate: Date;
+  user: string; // เป็น ObjectID ของผู้ใช้
+  dentist: string; // เป็น ObjectID ของหมอฟัน
+  createdAt: Date;
+  __v: number;
 }
 
 export interface Credentials {
