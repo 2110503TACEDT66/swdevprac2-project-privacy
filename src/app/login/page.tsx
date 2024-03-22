@@ -1,42 +1,49 @@
-'use client'
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
-
+"use client";
+import LoadingProgress from "@/components/LoadingProgress";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 function LoginPage() {
   const router = useRouter();
-  const [email,setEmail] = useState<string>('');
-  const [password,setPassword] = useState<string>('')
-  const [error,setError] = useState<string>('')
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
-  const handlerSubmit = async(e:any)=>{
+  const handlerSubmit = async (e: any) => {
     try {
+      e.preventDefault();
+      setLoading(true); // เริ่มแสดง LoadingProgress
+      if (!email) {
+        setError("Please Enter your Email");
+        setLoading(false); // ซ่อน LoadingProgress เนื่องจากเกิด error
+        return;
+      }
+      if (!password) {
+        setError("Please Enter your Password");
+        setLoading(false); // ซ่อน LoadingProgress เนื่องจากเกิด error
+        return;
+      }
 
-        e.preventDefault();
-        if(!email){
-            setError("Please Enter your Email")
-            return;
-        }
-        if(!password){
-            setError("Please Enter your Password")
-            return;
-        }
-        
-        const res = await signIn('credentials',{email,password,redirect:false})
-        if(res?.error){
-            setError("Invalid credentials")
-            return;
-        }
-        console.log("going to router");
-        
-        router.push('/')
-        
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      if (res?.error) {
+        setError("Invalid credentials");
+        setLoading(false); // ซ่อน LoadingProgress เนื่องจากเกิด error
+        return;
+      }
+      console.log("going to router");
+      router.push("/");
     } catch (error) {
-        console.log("Error from login" + error);
+      console.log("Error from login" + error);
+      setLoading(false); // ซ่อน LoadingProgress เนื่องจากเกิด error
     }
-  }
-
+  };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -66,7 +73,7 @@ function LoginPage() {
                 name="email"
                 type="email"
                 required
-                onChange={(e)=>setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -80,14 +87,16 @@ function LoginPage() {
               >
                 Password
               </label>
-              
             </div>
             <div className="mt-2">
               <input
                 id="password"
                 name="password"
                 type="password"
-                onChange={(e)=>{setPassword(e.target.value); console.log(password);}}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  console.log(password);
+                }}
                 // required
                 className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -103,29 +112,31 @@ function LoginPage() {
             </button>
           </div>
           {error && (
-                <div className=' text-center bg-red-500 w-fit text-sm text-white py-1 px-3 rounded-md mt-2'>
-                    {error}
-                </div>
-            )}
+            <div className=" text-center bg-red-500 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+              {error}
+            </div>
+          )}
         </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Do not have an account?
-          <a
-            href="#"
+          <Link
+            href="/register"
             className="ml-2 font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
             Sign-up
-          </a>
+          </Link>
         </p>
       </div>
-      
+      <div className="absolute w-fit h-fit bg-slate-500 flex flex-col item-center bottom-10 left-1/2 -translate-x-1/2">
+        <h1>email : admin3@gmail.com</h1>
+        <h1>password : 123456</h1>
+      </div>
+      <LoadingProgress show={loading} />
     </div>
-  )
+  );
 }
 
-export default LoginPage
-
-
+export default LoginPage;
 
 /**/
