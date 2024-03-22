@@ -13,7 +13,7 @@ const reduxPersistedReducer = persistReducer(persistConfig,bookSlice)
 
 export const store = configureStore({
     reducer: {
-        reduxPersistedReducer
+        root:reduxPersistedReducer
     }
 })
 

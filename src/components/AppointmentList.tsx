@@ -5,7 +5,7 @@ import { removeBooking } from "@/redux/features/bookSlice";
 
 export default function AppointmentList() {
 
-    const bookingItems = useAppSelector((state) => state.reduxPersistedReducer.bookItems)
+    const bookingItems = useAppSelector((state) => state.root.bookItems)
     const dispatch = useDispatch<AppDispatch>()
 
     return (
