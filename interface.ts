@@ -25,3 +25,8 @@ export interface BookingItem {
     hospital: string,
     bookDate: string
 }
+
+export interface Credentials {
+    email: string;
+    password: string;
+  }
