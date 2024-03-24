@@ -36,7 +36,9 @@ export const authOptions: AuthOptions = {
       async jwt({ token, user }) {
         if (user && (user as CustomUser).token) {
             const payload = jwtt.decode((user as CustomUser).token);
+            payload.token = (user as CustomUser).token
             token.user = payload;
+            
         }
         return token;
     },
