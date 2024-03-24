@@ -38,7 +38,10 @@ function LoginPage() {
         return;
       }
       console.log("going to router");
-      router.push("/");
+      // setLoading(false)
+      router.refresh()
+      router.replace('/')
+      // router.back()
     } catch (error) {
       console.log("Error from login" + error);
       setLoading(false); // ซ่อน LoadingProgress เนื่องจากเกิด error
