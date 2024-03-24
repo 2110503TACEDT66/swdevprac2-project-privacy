@@ -26,7 +26,7 @@ function page() {
         return;
       }
 
-      if (password.length <= 6) {
+      if (password.length < 6) {
         setError("Password must have more than 6 ");
         setLoading(false);
         return;
@@ -48,6 +48,12 @@ function page() {
       console.log({ user });
       if (!user) {
         setError("Register Error");
+        setLoading(false);
+        return;
+      }
+
+      if (user.success === false) {
+        setError("This email is already use.");
         setLoading(false);
         return;
       }
