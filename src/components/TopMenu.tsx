@@ -4,11 +4,16 @@ import TopMenuItem from "./TopMenuItem";
 import { Link as MUILINK } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useState } from "react";
+import ConfirmLogout from "./ConfirmLogout";
+import { useWindowListener } from "@/hooks/useWindowListener";
 
 export default function TopMenu() {
   // const session = await getServerSession(authOptions)
+
+  const [isLogout, setIsLogout] = useState(false);
   const { data: session } = useSession();
   console.log(session);
   return (
@@ -28,7 +33,7 @@ export default function TopMenu() {
         {session ? (
           <TopMenuItem
             title={`Sign-Out of ${session.user.name}`}
-            pageRef="/api/auth/signout"
+            onLogout={() => setIsLogout(!isLogout)}
           />
         ) : (
           <>
@@ -38,6 +43,14 @@ export default function TopMenu() {
         )}
         <TopMenuItem title="My Booking" pageRef="/mybooking" />
       </div>
+      <ConfirmLogout
+        show={isLogout}
+        onCancel={() => setIsLogout(false)}
+        onConfirm={() => {
+          setIsLogout(false);
+          signOut({ redirect: false });
+        }}
+      />
     </div>
   );
 }
