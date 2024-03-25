@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 export default function Banner() {
-    const cover = '/img/cover.jpg';
+    const cover = '/img/cover.jpeg';
     const router = useRouter();
 
     const { data : session } = useSession();
     return (
-        <div className={styles.banner}>
+        <div className='block p-[5px] m-0 w-screen h-screen relative'>
             <Image className='object-cover' src={cover} alt='cover' priority fill={true}/>
             <div className="relative mt-[80px] z-20 text-center bg-opacity-45 bg-cyan-50 p-4">
                 <h1 className='text-4xl font-medium text-cyan-950'>Dentist Appointment</h1>
