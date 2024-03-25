@@ -35,7 +35,7 @@ export default function Appointment() {
   }, []);
 
   if (session?.user.role === "user" && apptItem === 1) {
-    return <div>You have already made an appointment</div>;
+    return <div className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3 text-center">You have already made an appointment</div>;
   }
 
   const makeAppointment = async () => {
