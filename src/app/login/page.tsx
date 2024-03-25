@@ -110,7 +110,7 @@ function LoginPage() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-[#107557] hover:bg-teal-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-[#107557] hover:bg-teal-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
               </button>
@@ -124,10 +124,7 @@ function LoginPage() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Do not have an account?
-            <Link
-              href="/register"
-              className="ml-2 font-semibold leading-6 text-[#107557] hover:text-teal-950"
-            >
+            <Link href="/register" className="ml-2 font-semibold leading-6 text-[#107557] hover:text-teal-900 m-1">
               Sign-up
             </Link>
           </p>
