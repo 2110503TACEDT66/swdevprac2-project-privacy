@@ -38,6 +38,7 @@ export default function Booking() {
                 await addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist, session?.user._id, session?.user.token);
                 setBookingDate(null); 
                 setBookingDentist("");
+                setLoading(false);
             }
         }
         setLoading(false);
