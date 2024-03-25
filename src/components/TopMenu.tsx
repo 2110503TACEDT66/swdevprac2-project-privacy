@@ -41,7 +41,7 @@ export default function TopMenu() {
             <TopMenuItem title="Sign-Up" pageRef="/register" />
           </>
         )}
-        <TopMenuItem title="My Booking" pageRef="/mybooking" />
+        <TopMenuItem title="My Appointment" pageRef="/myappointment" />
       </div>
       <ConfirmLogout
         show={isLogout}
