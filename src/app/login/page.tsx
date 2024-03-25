@@ -110,13 +110,13 @@ function LoginPage() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-[#107557] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#E2646C] hover:text-[#753232] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-[#107557] hover:bg-teal-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
               </button>
             </div>
             {error && (
-              <div className=" text-center bg-red-500 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+              <div className=" text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
                 {error}
               </div>
             )}
@@ -126,7 +126,7 @@ function LoginPage() {
             Do not have an account?
             <Link
               href="/register"
-              className="ml-2 font-semibold leading-6 text-[#107557] hover:text-[#E2646C]"
+              className="ml-2 font-semibold leading-6 text-[#107557] hover:text-teal-950"
             >
               Sign-up
             </Link>
