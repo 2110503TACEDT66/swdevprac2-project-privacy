@@ -9,7 +9,7 @@ export default function hospital(){
         <main className="p-5 ml-16 flex flex-col items-center justify-center space-y-3">
             <h1 className="text-center text-3xl font-semibold mt-2 mb-5 text-[#107557]">Select Your Dentist</h1>
             <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
-                <HospitalCatalog hospitalsJson={hospitals}/>
+                <HospitalCatalog dentistsJson={hospitals}/>
             </Suspense>
         </main>
     );
