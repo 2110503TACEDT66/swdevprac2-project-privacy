@@ -1,6 +1,5 @@
 'use client'
 import { Button, MenuItem, Select, TextField } from "@mui/material";
-import DateReserve from "@/components/DateReserve";
 import { ClassNames } from "@emotion/react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
@@ -12,6 +11,7 @@ import { AppDispatch } from "@/redux/store";
 import { addBooking } from "@/redux/features/bookSlice";
 import { Appointment } from "../../../interface";
 import DentistDateReserve from "@/components/DentistDateReserve";
+import addAppointment from "@/libs/addAppointment";
 
 export default function Booking() {
 
@@ -28,18 +28,9 @@ export default function Booking() {
     const [bookingDentist, setBookingDentist] = useState<string>("");
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
 
-    const makeBooking = () => {
-        // if (bookingName.trim()!=='' && bookingSurname.trim()!=='' && bookingId.trim()!=='' && bookingDentist.trim()!=='' && bookingDate) {
-        //     const item:Appointment= {
-        //         // name: bookingName,
-        //         // surname: bookingSurname,
-        //         id: bookingId,
-        //         hospital: bookingDentist,
-        //         bookDate: dayjs(bookingDate).format("YYYY/MM/DD")
-        //     }
-        //     dispatch(addBooking(item));
-        //     //console.log(item);
-        // }
+    const makeAppointment = () => {
+        if(bookingDate!==null && bookingDentist!=="")
+        addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist)
     }
 
     return (
@@ -55,19 +46,14 @@ export default function Booking() {
                 </tbody>
             </table> */}
 
-            <h1 className="text-[20px] m-5 font-bold text-cyan-700 rounded-lg p-3">Vaccine Booking</h1>
+            <h1 className="text-[20px] m-5 font-bold text-cyan-700 rounded-lg p-3">Make an Appointment</h1>
             <form className="w-[40vw] h-auto bg-violet-50 justify-center rounded-lg flex flex-col p-10">
-                <TextField name="Name" label="Name" variant="standard" value={bookingName} className="m-3" onChange={(e) => setBookingName(e.target.value)}/>
+                {/* <TextField name="Name" label="Name" variant="standard" value={bookingName} className="m-3" onChange={(e) => setBookingName(e.target.value)}/>
                 <TextField name="Lastname" label="Lastname" variant="standard" value={bookingSurname} className="m-3" onChange={(e) => setBookingSurname(e.target.value)}/>
-                <TextField name="Citizen ID" label="Citizen ID" variant="standard" value={bookingId} className="m-3" onChange={(e) => setBookingId(e.target.value)}/>
+                <TextField name="Citizen ID" label="Citizen ID" variant="standard" value={bookingId} className="m-3" onChange={(e) => setBookingId(e.target.value)}/> */}
                 <DentistDateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}} onDentistChange={(value:string) => {setBookingDentist(value)}}/>
-                {/* <Select variant='standard' name='hospital' id='hospital' value={bookingHospital} className="h-[2em] w-[100] m-3" onChange={(e) => setBookingHospital(e.target.value)}>
-                    <MenuItem value="Chula">Chulalongkorn Hospital</MenuItem>
-                    <MenuItem value="Rajavithi">Rajavithi Hospital</MenuItem>
-                    <MenuItem value="Thammasat">Thammasat University Hospital</MenuItem>
-                </Select>
-                <DateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}}/> */}
-                <button name='Book Vaccine' type="button" className="font-semibold bg-cyan-700 text-yellow-100 rounded-md m-3 p-3" onClick={makeBooking}>Book Vaccine</button>
+                <button name='Book Vaccine' type="button" 
+                className="font-semibold bg-cyan-700 text-yellow-100 rounded-md m-3 p-3" onClick={makeAppointment}>Book Vaccine</button>
             </form>
             
         </main>
