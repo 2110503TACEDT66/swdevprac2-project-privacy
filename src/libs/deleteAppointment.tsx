@@ -1,6 +1,6 @@
 export default async function deleteAppointment(ApptId:string,token:string) {
     const response = await fetch(`https://privacy-backend.vercel.app/api/v1/appointments/${ApptId}`,{
-        method: "GET",
+        method: "DELETE",
         headers: {
             authorization: `Bearer ${token}`,
         }

@@ -18,10 +18,15 @@ export interface DentistJson {
 export interface Appointment {
   _id: string;
   apptDate: Date;
-  user: string; // เป็น ObjectID ของผู้ใช้
+  user: User; // เป็น ObjectID ของผู้ใช้
   dentist: DentistItem; // เป็น ObjectID ของหมอฟัน
   createdAt: Date;
   __v: number;
+}
+
+export interface User {
+  _id:string,
+  name:string
 }
 
 
