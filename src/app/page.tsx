@@ -4,9 +4,8 @@ import PromoteCard from '@/components/PromoteCard'
 
 export default function Home() {
   return (
-    <main className='fixed'>
+    <main className='fixed '>
       <Banner/>
-      
     </main>
   )
 }

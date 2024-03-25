@@ -17,7 +17,7 @@ export default function TopMenu() {
   const { data: session } = useSession();
   console.log(session);
   return (
-    <div className="h-[50px] text-cyan-800 bg-white fixed top-0 left-0 right-0 z-30 border-y border-solid border-gray-200 flex flex-row-reverse">
+    <div className=" h-[50px]  text-cyan-800 bg-transparent fixed top-0 left-0 right-0 z-30 border-y border-solid border-gray-200 flex flex-row-reverse">
       <Link href={"/"}>
         <Image
           src={"/img/logo.png"}

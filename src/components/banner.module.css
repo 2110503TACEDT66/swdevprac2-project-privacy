@@ -6,3 +6,7 @@
     height: 100vh;
     position: relative;
 }
+
+.bannerWrapper {
+    background-color: var(--banner-background-color); /* ใช้ตัวแปร CSS Custom Property */
+}
