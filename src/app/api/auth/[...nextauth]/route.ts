@@ -37,6 +37,7 @@ export const authOptions: AuthOptions = {
         if (user && (user as CustomUser).token) {
             const payload = jwtt.decode((user as CustomUser).token);
             payload.token = (user as CustomUser).token
+            payload.role = (user as CustomUser).role
             token.user = payload;
             
         }
