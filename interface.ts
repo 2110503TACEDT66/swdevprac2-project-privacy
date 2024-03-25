@@ -15,7 +15,7 @@ export interface DentistJson {
     data: DentistItem[]
 }
 
-interface Appointment {
+export interface Appointment {
   _id: string;
   apptDate: Date;
   user: string; // เป็น ObjectID ของผู้ใช้

@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { addBooking } from "@/redux/features/bookSlice";
-import { BookingItem } from "../../../interface";
+import { Appointment } from "../../../interface";
 import DentistDateReserve from "@/components/DentistDateReserve";
 
 export default function Booking() {
@@ -29,17 +29,17 @@ export default function Booking() {
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
 
     const makeBooking = () => {
-        if (bookingName.trim()!=='' && bookingSurname.trim()!=='' && bookingId.trim()!=='' && bookingHospital.trim()!=='' && bookingDate) {
-            const item:BookingItem= {
-                name: bookingName,
-                surname: bookingSurname,
-                id: bookingId,
-                hospital: bookingHospital,
-                bookDate: dayjs(bookingDate).format("YYYY/MM/DD")
-            }
-            dispatch(addBooking(item));
-            //console.log(item);
-        }
+        // if (bookingName.trim()!=='' && bookingSurname.trim()!=='' && bookingId.trim()!=='' && bookingDentist.trim()!=='' && bookingDate) {
+        //     const item:Appointment= {
+        //         // name: bookingName,
+        //         // surname: bookingSurname,
+        //         id: bookingId,
+        //         hospital: bookingDentist,
+        //         bookDate: dayjs(bookingDate).format("YYYY/MM/DD")
+        //     }
+        //     dispatch(addBooking(item));
+        //     //console.log(item);
+        // }
     }
 
     return (
