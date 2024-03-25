@@ -25,13 +25,13 @@ function ConfirmLogout({
         <p>Are you sure you want to logout?</p>
         <div className="mt-8 flex justify-between">
           <button
-            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-rose-900  hover:bg-rose-600 text-white font-bold py-2 ml-3 px-4 rounded w-24"
             onClick={() => onCancel()}
           >
             Cancel
           </button>
           <button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-teal-900 hover:bg-green-600 text-white font-bold py-2 mr-3 px-4 rounded w-24"
             onClick={() => onConfirm()}
           >
             Confirm
