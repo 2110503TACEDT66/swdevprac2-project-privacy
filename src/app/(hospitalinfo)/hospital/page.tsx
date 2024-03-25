@@ -1,4 +1,3 @@
-import CardPanel from "@/components/CardPanel";
 import HospitalCatalog from "@/components/DentistCatalog";
 import getDentists from "@/libs/getDentists";
 import { LinearProgress } from "@mui/material";
