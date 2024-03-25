@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Select, MenuItem, InputLabel } from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
+import { Select, MenuItem } from "@mui/material";
+import dayjs from "dayjs";
 import getDentists from "@/libs/getDentists";
 import { DentistItem } from "../../interface";
 
@@ -17,8 +17,8 @@ export default function DentistDateReserve({
   onDentistChange: Function;
   editAppt?: { DentistName: string; ApptDate: Date };
 }) {
-  const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
-  const [dentist, setDentist] = useState<string>("");
+  const [reserveDate, setReserveDate] = useState(dayjs());
+  const [dentist, setDentist] = useState("");
   const [dentists, setDentists] = useState<DentistItem[]>([]);
 
   useEffect(() => {
@@ -37,9 +37,10 @@ export default function DentistDateReserve({
 
     fetchDentists();
   }, []);
+
   return (
-    <div className="flex space-x-4 relative w-full mb-3">
-      <div className="w-[50%]">
+    <div className="flex justify-end space-x-4 relative w-full mb-3">
+      <div className="w-[70%]">
         <Select
           name="location"
           id="location"
@@ -49,7 +50,6 @@ export default function DentistDateReserve({
             setDentist(e.target.value);
             onDentistChange(e.target.value);
           }}
-          // ทำให้ Option เป็นขนาดเดียวกัน
           MenuProps={{
             PaperProps: {
               style: {
@@ -67,16 +67,14 @@ export default function DentistDateReserve({
           ))}
         </Select>
       </div>
-      <div className=" h-fit rounded-[16px] flex flex-row w-1/2 ">
+      <div className="w-[65%]">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            
-            className="bg-white rounded-[16px]" // เพิ่ม className เพื่อกำหนดสีพื้นหลังเป็นสีขาว
-            value={reserveDate ? dayjs(reserveDate) : null}
+            className="bg-white rounded-[16px]"
+            value={reserveDate}
             onChange={(value) => {
-              const selectedDate = dayjs(value);
-              setReserveDate(selectedDate);
-              onDateChange(selectedDate);
+              setReserveDate(dayjs(value));
+              onDateChange(dayjs(value));
             }}
           />
         </LocalizationProvider>

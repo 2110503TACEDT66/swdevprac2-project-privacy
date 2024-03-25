@@ -1,12 +1,11 @@
-"use client";
-import dayjs, { Dayjs } from "dayjs";
-import { useEffect, useState } from "react";
+'use client'
 import DentistDateReserve from "@/components/DentistDateReserve";
 import addAppointment from "@/libs/addAppointment";
 import { useSession } from "next-auth/react";
 import LoadingProgress from "@/components/LoadingProgress";
+import { useState, useEffect } from "react";
+import dayjs, { Dayjs } from "dayjs";
 import getAppointment from "@/libs/getAppointment";
-import { Appointment } from "../../../interface";
 import getAppointments from "@/libs/getAppointments";
 
 export default function Appointment() {
@@ -17,13 +16,14 @@ export default function Appointment() {
   const [loading, setLoading] = useState(false);
   const [apptItem, setApptItem] = useState<number>(0);
   const [error, setError] = useState<string>("");
+
   useEffect(() => {
     const fetchAppointments = async () => {
       if (session) {
         try {
           const data = await getAppointments(session.user.token);
           setApptItem(data.count);
-          console.log({data});
+          console.log({ data });
           console.log(session);
         } catch (error) {
           console.error("Failed to fetch appointment:", error);
@@ -32,7 +32,7 @@ export default function Appointment() {
     };
 
     fetchAppointments();
-  }, [session,apptItem]);
+  }, [session, apptItem]);
 
   if (session?.user.role === "user" && apptItem === 1) {
     return <div className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3 text-center">You have already made an appointment</div>;
@@ -64,34 +64,38 @@ export default function Appointment() {
   };
 
   return (
-    <main className="flex flex-col items-center">
-      <h1 className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3">
-        Make an Appointment
-      </h1>
-      <form className="w-[40vw] h-auto bg-[#BED7CF] justify-center rounded-lg flex flex-col p-10">
-        <DentistDateReserve
-          onDateChange={(value: Dayjs) => {
-            setBookingDate(value);
-          }}
-          onDentistChange={(value: string) => {
-            setBookingDentist(value);
-          }}
-        />
-        <button
-          name="Book Vaccine"
-          type="button"
-          className="font-semibold bg-[#107557] text-yellow-100 rounded-md m-3 p-3"
-          onClick={makeAppointment}
-        >
-          Book Vaccine
-        </button>
-        {error && (
-              <div className=" text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
-                {error}
-              </div>
-            )}
-      </form>
-      <LoadingProgress show={loading} />
-    </main>
+    <div className="w-screen h-screen bg-cover flex items-center justify-center" style={{backgroundImage: "url('/img/apptcover.jpg')"}}>
+      <main>
+        <form className="w-[60vw] bg-[#BED7CF] bg-opacity-75 justify-center rounded-lg flex flex-col p-10">
+          <h1 className="text-[35px] m-auto font-bold text-[#107557] rounded-lg p-3 mb-6">
+            Make an Appointment
+          </h1>
+          <div className="flex-grow flex flex-col justify-center ml-14 ">
+            <DentistDateReserve
+              onDateChange={(value: Dayjs) => {
+                setBookingDate(value);
+              }}
+              onDentistChange={(value: string) => {
+                setBookingDentist(value);
+              }}
+            />
+          </div>
+          <button
+            name="Book Vaccine"
+            type="button"
+            className="font-semibold bg-[#107557] text-yellow-100 rounded-md m-3 p-3"
+            onClick={makeAppointment}
+          >
+            Book Vaccine
+          </button>
+          {error && (
+            <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+              {error}
+            </div>
+          )}
+        </form>
+        <LoadingProgress show={loading} />
+      </main>
+    </div>
   );
 }

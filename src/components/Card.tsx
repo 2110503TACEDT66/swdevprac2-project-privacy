@@ -6,7 +6,7 @@ import React from 'react';
 export default function Card ({dentistName, imgSrc, dentistDesc} : {dentistName:string, imgSrc:string,dentistDesc:{dentistExp:number; dentistExpertise:string}}) {
 
     return (
-        <div className='w-[280px] h-[336px] shadow-lg rounded-lg bg-white mb-5 hover:bg-neutral-200 hover:shadow-2xl'>
+        <div className='w-[250px] h-[340px] shadow-lg rounded-lg bg-white mb-5 hover:bg-neutral-200 hover:shadow-2xl'>
             <div className='w-full h-[70%] relative rounded-t-lg'>
                 <Image src = {imgSrc} alt='Product Picture' fill={true} className='object-cover rounded-t-lg '/>
             </div>
