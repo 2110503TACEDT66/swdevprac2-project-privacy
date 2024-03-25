@@ -42,7 +42,7 @@ export default function DentistDateReserve({
       <div>
         
         <Select
-          
+          placeholder="Select the hospital"
           variant="standard"
           name="location"
           id="location"

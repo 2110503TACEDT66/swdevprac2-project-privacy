@@ -49,26 +49,40 @@ export default function AppointmentList() {
         }
       }, [refresh]);
 
-    return (
-        <>
-        {
-            bookingItems?
-            bookingItems.map((item:Appointment) => (
-                <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2" key={item._id}>
-                    <div className="text-xl m-1"></div>
-                    <div className="text-sm m-1">Name: {item.user.name}</div>
-                    <div className="text-sm m-1">Dentist: {(item.dentist).name}</div>
-                    <div className="text-sm m-1">Date: {dayjs(item.apptDate).format("YYYY/MM/DD")}</div>
-                    <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => deletemyAppointment(item._id)}>
-                        Remove
-                    </button>
-                    <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => router.replace(`/appointment/${item._id}`)}>
-                        Edit
-                    </button>
+      return (
+        <div className="flex flex-col justify-center items-center space-y-4">
+          <p className="text-3xl font-bold text-[#107557] py-8">My Appointments</p>
+          {bookingItems.length > 0 ? (
+            bookingItems.map((item: Appointment) => (
+              <div
+                className="bg-[#BED7CF] w-[592px] rounded-[17px] px-5 py-4 my-2 flex flex-col sm:flex-row justify-between items-center"
+                key={item._id}
+              >
+                <div className="flex flex-col">
+                  <div className="font-semibold text-sm my-1">Name: {item.user.name}</div>
+                  <div className="font-semibold text-sm my-1">Dentist: {item.dentist.name}</div>
+                  <div className="font-semibold text-sm my-1">Date: {dayjs(item.apptDate).format("YYYY/MM/DD")}</div>
                 </div>
-            )) : <div className="m-4 text-cyan-800">No Appointment</div>
-        } 
-        <LoadingProgress show={loading} />
-        </>
-    );
+                <div className="flex flex-row mt-4 sm:mt-0 space-x-5">
+                  <button
+                    className="w-[105px] h-[45px]text-sm rounded-md bg-[#D24F4F] hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
+                    onClick={() => deletemyAppointment(item._id)}
+                  >
+                    Remove
+                  </button>
+                  <button
+                    className="w-[105px] h-[45px]text-sm rounded-md bg-[#107557] hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
+                    onClick={() => router.replace(`/appointment/${item._id}`)}
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="m-4 text-cyan-800">No Appointments</div>
+          )}
+          <LoadingProgress show={loading} />
+        </div>
+      );
 }
