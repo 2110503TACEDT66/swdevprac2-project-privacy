@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, InputLabel } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import getDentists from "@/libs/getDentists";
 import { DentistItem } from "../../interface";
@@ -40,12 +40,15 @@ export default function DentistDateReserve({
   return (
     <div>
       <div>
+        
         <Select
+          
           variant="standard"
           name="location"
           id="location"
           value={dentist}
-          className="h-[2em] w-full my-5"
+          className=" w-[398px] h-[52px] my-5 bg-white rounded-xl hover:border-none"
+          
           onChange={(e) => {
             setDentist(e.target.value);
             onDentistChange(e.target.value);

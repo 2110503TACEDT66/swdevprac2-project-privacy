@@ -19,6 +19,7 @@ export default function AppointmentList() {
     const [loading, setLoading] = useState(false);
     const [refresh , setRefresh] = useState(false);
     const router = useRouter()
+    const [check,setCheck] = useState(false)
     const deletemyAppointment = async(ApptId:string)=>{
       setLoading(true);
       try {
@@ -39,6 +40,7 @@ export default function AppointmentList() {
             const fetchAppointments = async () => {
               try {
                 const data = await getAppointments(session.user.token);
+                if(data) setCheck(true);
                 setBookingItems(data.data);
                 console.log(data.data);
               } catch (error) {
@@ -53,7 +55,7 @@ export default function AppointmentList() {
     return (
         <>
         {
-            bookingItems?
+            check?
             bookingItems.map((item:Appointment) => (
                 <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2" key={item._id}>
                     <div className="text-xl m-1"></div>

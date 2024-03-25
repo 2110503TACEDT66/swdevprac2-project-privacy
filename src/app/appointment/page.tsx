@@ -38,8 +38,8 @@ export default function Booking() {
 
     return (
         <main className="flex flex-col items-center">
-            <h1 className="text-[20px] m-5 font-bold text-cyan-700 rounded-lg p-3">Make an Appointment</h1>
-            <form className="w-[40vw] h-auto bg-violet-50 justify-center rounded-lg flex flex-col p-10">
+            <h1 className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3">Make an Appointment</h1>
+            <form className="w-[40vw] h-auto bg-[#BED7CF] justify-center rounded-lg flex flex-col p-10">
                 <DentistDateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}} onDentistChange={(value:string) => {setBookingDentist(value)}}/>
                 <button name='Book Vaccine' type="button" 
                 className="font-semibold bg-cyan-700 text-yellow-100 rounded-md m-3 p-3" onClick={makeAppointment}>Book Vaccine</button>

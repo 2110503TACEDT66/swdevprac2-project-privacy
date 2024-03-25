@@ -18,7 +18,7 @@ export default async function HospitalCatalog({
           href={`/hospital/${DentistItem.id}`}
           className="w-full"
         >
-          <Card hospitalName={DentistItem.name} imgSrc={"/img/doctor.jpg"} />
+          <Card hospitalName={DentistItem.name} dentistDesc = {{dentistExp:DentistItem.years_of_experience,dentistExpertise:DentistItem.area_of_expertise}} imgSrc={"/img/doctor.jpg"} />
         </Link>
       ))}
     </div>
