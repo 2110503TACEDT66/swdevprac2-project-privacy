@@ -6,7 +6,7 @@ import addAppointment from "@/libs/addAppointment";
 import { useSession } from "next-auth/react";
 import LoadingProgress from "@/components/LoadingProgress";
 
-export default function Booking() {
+export default function Appointment() {
     const { data : session } = useSession();
 
     const [bookingDentist, setBookingDentist] = useState<string>("");
