@@ -16,7 +16,7 @@ export default function Appointment() {
   const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
   const [loading, setLoading] = useState(false);
   const [apptItem, setApptItem] = useState<number>(0);
-
+  const [error, setError] = useState<string>("");
   useEffect(() => {
     const fetchAppointments = async () => {
       if (session) {
@@ -42,15 +42,22 @@ export default function Appointment() {
     setLoading(true);
     if (session) {
       if (bookingDate !== null && bookingDentist !== "") {
-        await addAppointment(
-          dayjs(bookingDate).format("YYYY/MM/DD"),
-          bookingDentist,
-          session?.user._id,
-          session?.user.token
-        );
-        setBookingDate(null);
-        setBookingDentist("");
-        setLoading(false);
+        const currentDate = dayjs();
+        const selectedDate = dayjs(bookingDate);
+        if (selectedDate.isAfter(currentDate, 'day')) { 
+          await addAppointment(
+            selectedDate.format("YYYY/MM/DD"),
+            bookingDentist,
+            session?.user._id,
+            session?.user.token
+          );
+          setBookingDate(null);
+          setBookingDentist("");
+        } else {
+          setError("Cannot book appointment for past dates.");
+          setLoading(false);
+          return;
+        }
       }
     }
     setLoading(false);
@@ -78,6 +85,11 @@ export default function Appointment() {
         >
           Book Vaccine
         </button>
+        {error && (
+              <div className=" text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+                {error}
+              </div>
+            )}
       </form>
       <LoadingProgress show={loading} />
     </main>
