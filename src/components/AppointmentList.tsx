@@ -52,7 +52,7 @@ export default function AppointmentList() {
     return (
         <>
         {
-            check?
+            bookingItems?
             bookingItems.map((item:Appointment) => (
                 <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2" key={item._id}>
                     <div className="text-xl m-1"></div>
