@@ -23,7 +23,7 @@ export default function TopMenuItem({
   if (pageRef) {
     return (
       <Link
-        className="w-[120px] text-center my-auto font-sans text-xs text-yellow-50"
+        className="w-fit m-5 text-center my-auto font-sans text-xs text-yellow-50"
         href={pageRef}
       >
         {title}

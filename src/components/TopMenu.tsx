@@ -16,43 +16,34 @@ export default function TopMenu() {
   const [isLogout, setIsLogout] = useState(false);
   const { data: session } = useSession();
   console.log(session);
-  return (
-    <div className=" h-[50px] text-cyan-800 bg-teal-900 fixed top-0 left-0 right-0 z-30 flex flex-row">
 
-      <div className="flex flex-row flex-start absolute left-3 h-full text-center my-auto font-sans text-xs text-gray">
+  return (
+    <div className="flex flex-row h-[50px] bg-teal-900 z-30 fixed top-0 right-0 left-0">
+
+      <div className="flex flex-row justify-start  h-[50px] w-1/3 ml-2">
       {session ? (
             <TopMenuItem title={`Sign-Out of ${session.user.name}`} onLogout={() => setIsLogout(!isLogout)}/>
           ) : (
-            <>
+            <div className="flex flex-row h-[50px] ">
               <TopMenuItem title="Sign-In" pageRef="/login" />
               <TopMenuItem title="Sign-Up" pageRef="/register" />
-            </>
+            </div>
           )}
       </div>
 
-      <div  className="justify-center h-[50px] text-cyan-800 bg-teal-900 fixed top-0 left-0 right-0 z-30 flex">
+      <div  className="flex flex-row justify-center h-[50px] w-1/3">
         <Link href={"/"}>
           <Image src={"/img/logo.png"} className="h-full w-auto p-1" alt="logo" width={0} height={0} sizes="100vh"/>
         </Link>
       </div>
 
-      <div className="justify-end h-[50px] text-cyan-800 bg-teal-900 fixed top-0 left-0 right-0 z-30 flex">
+      <div className="flex flex-row justify-end h-[50px] w-1/3 mr-2">
         <TopMenuItem title="Appointment" pageRef="/appointment" />
         <TopMenuItem title="My Appointment" pageRef="/myappointment" />
-        <div className="flex flex-row absolute left-3 h-full text-center my-auto font-sans text-xs text-gray">
-          {session ? (
-            <TopMenuItem title={`Sign-Out of ${session.user.name}`} onLogout={() => setIsLogout(!isLogout)}/>
-          ) : (
-            <>
-              <TopMenuItem title="Sign-In" pageRef="/login" />
-              <TopMenuItem title="Sign-Up" pageRef="/register" />
-            </>
-          )}
-        </div>
-
-        <ConfirmLogout show={isLogout} onCancel={() => setIsLogout(false)} 
-        onConfirm={() => { setIsLogout(false); signOut({ redirect: false })}}/>
       </div>
+      
+      <ConfirmLogout show={isLogout} onCancel={() => setIsLogout(false)} 
+      onConfirm={() => { setIsLogout(false); signOut({ redirect: false })}}/>
     </div>
   );
 }

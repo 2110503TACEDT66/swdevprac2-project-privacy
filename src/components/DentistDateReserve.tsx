@@ -65,7 +65,7 @@ export default function DentistDateReserve({
             value={reserveDate ? dayjs(reserveDate) : null}
             onChange={(value) => {
               const selectedDate = dayjs(value);
-              setReserveDate(selectedDate); 
+              setReserveDate(selectedDate);
               onDateChange(selectedDate);
             }}
           />
