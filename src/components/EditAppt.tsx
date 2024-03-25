@@ -15,8 +15,8 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
         DentistName:DentistName,
         ApptDate:DateAppt
     }
-    const [bookingDentist, setBookingDentist] = useState<string>('');
-    const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
+    const [bookingDentist, setBookingDentist] = useState<string>(DentistName);
+    const [bookingDate, setBookingDate] = useState<Dayjs | null>(dayjs(DateAppt));
     const [loading, setLoading] = useState(false);
     const router = useRouter()
     
@@ -28,8 +28,6 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
 
                 
                 console.log(re);
-                setBookingDate(null); 
-                setBookingDentist("");
                 setLoading(false);
                 onRefresh(true)
             }
