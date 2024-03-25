@@ -15,7 +15,7 @@ export default function Appointment() {
   const [bookingDentist, setBookingDentist] = useState<string>("");
   const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
   const [loading, setLoading] = useState(false);
-  const [apptItem, setApptItem] = useState<number>(0);
+  const [apptItem, setApptItem] = useState<number>(1);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -32,7 +32,7 @@ export default function Appointment() {
     };
 
     fetchAppointments();
-  }, []);
+  }, [session,apptItem]);
 
   if (session?.user.role === "user" && apptItem === 1) {
     return <div className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3 text-center">You have already made an appointment</div>;
