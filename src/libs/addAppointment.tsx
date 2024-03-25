@@ -1,18 +1,18 @@
 import { Dayjs } from "dayjs";
 import { useSession } from "next-auth/react";
 
-export default async function addAppointment(date:string, dentistId: string) {
+export default async function addAppointment(date:string, dentistId: string, userId: string, userToken: string) {
     
     try { 
-        const { data : session } = useSession();
         const response = await fetch(`https://privacy-backend.vercel.app/api/v1/dentists/${dentistId}/appointments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                authorization: `Bearer ${userToken}`
             },
             body: JSON.stringify({
                 apptDate: date,
-                user: session?.user._id
+                user: {userId}
             }),
         })
         if(!response.ok) {

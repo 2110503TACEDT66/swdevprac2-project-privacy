@@ -12,8 +12,10 @@ import { addBooking } from "@/redux/features/bookSlice";
 import { Appointment } from "../../../interface";
 import DentistDateReserve from "@/components/DentistDateReserve";
 import addAppointment from "@/libs/addAppointment";
+import { useSession } from "next-auth/react";
 
 export default function Booking() {
+    const { data : session } = useSession();
 
     //For show login user
     // const session = await getServerSession(authOptions)
@@ -30,7 +32,7 @@ export default function Booking() {
 
     const makeAppointment = () => {
         if(bookingDate!==null && bookingDentist!=="")
-        addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist)
+        addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist, session?.user._id, session?.user.token)
     }
 
     return (
