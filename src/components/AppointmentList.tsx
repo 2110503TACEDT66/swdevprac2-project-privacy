@@ -52,7 +52,7 @@ export default function AppointmentList() {
       return (
         <div className="flex flex-col justify-center items-center space-y-4">
           <p className="text-3xl font-bold text-[#107557] py-8">My Appointments</p>
-          {bookingItems.length > 0 ? (
+          {bookingItems ? (
             bookingItems.map((item: Appointment) => (
               <div
                 className="bg-[#BED7CF] w-[592px] rounded-[17px] px-5 py-4 my-2 flex flex-col sm:flex-row justify-between items-center"
