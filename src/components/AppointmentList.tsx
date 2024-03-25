@@ -38,8 +38,11 @@ export default function AppointmentList() {
                     <div className="text-sm m-1">Id: {item._id}</div>
                     <div className="text-sm m-1">Dentist: {(item.dentist).name}</div>
                     <div className="text-sm m-1">Date: {dayjs(item.apptDate).format("YYYY/MM/DD")}</div>
-                    <button className='block h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 my-2 p-2 text-white shadow-sm' onClick = {() => dispatch(removeBooking(item._id))}>
-                        Remove this appointment
+                    <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => dispatch(removeBooking(item._id))}>
+                        Remove
+                    </button>
+                    <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => dispatch(removeBooking(item._id))}>
+                        Edit
                     </button>
                 </div>
             )) : <div className="m-4 text-cyan-800">No Appointment</div>
