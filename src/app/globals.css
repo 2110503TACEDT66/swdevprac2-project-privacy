@@ -26,3 +26,22 @@ a {
 }
 
 
+.date-picker .MuiPickersDay-root {
+  width: 40px; /* ปรับขนาดของแต่ละวัน */
+  height: 40px; /* ปรับขนาดของแต่ละวัน */
+}
+
+.date-picker .MuiPickersCalendarHeader-root {
+  background-color: #f0f0f0; /* ปรับสีพื้นหลังของหัววันในปฏิทิน */
+  border-bottom: 1px solid #ddd; /* เพิ่มเส้นขอบด้านล่าง */
+}
+
+.date-picker .MuiPickersCalendar-week {
+  margin-top: 8px; /* ปรับระยะห่างด้านบนของแต่ละสัปดาห์ */
+}
+
+.date-picker .MuiPickersBasePicker-container {
+  padding: 16px; /* ปรับระยะห่างของเนื้อหาภายใน DatePicker */
+}
+
+

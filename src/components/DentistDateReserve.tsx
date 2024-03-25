@@ -38,22 +38,28 @@ export default function DentistDateReserve({
     fetchDentists();
   }, []);
   return (
-    <div>
-      <div>
-        
+    <div className="flex space-x-4 relative w-full mb-3">
+      <div className="w-[50%]">
         <Select
-          placeholder="Select the hospital"
-          variant="standard"
           name="location"
           id="location"
           value={dentist}
-          className=" w-[398px] h-[52px] my-5 bg-white rounded-xl hover:border-none"
-          
+          className="w-full rounded-[16px] h-[52px] my-0 bg-white hover:border-none text-black"
           onChange={(e) => {
             setDentist(e.target.value);
             onDentistChange(e.target.value);
           }}
+          // ทำให้ Option เป็นขนาดเดียวกัน
+          MenuProps={{
+            PaperProps: {
+              style: {
+                maxHeight: 300,
+                width: 400,
+              },
+            },
+          }}
         >
+          <MenuItem value={""}>Select Your Dentist</MenuItem>
           {dentists.map((dentist: DentistItem) => (
             <MenuItem key={dentist.id} value={dentist.id}>
               {dentist.name}
@@ -61,10 +67,11 @@ export default function DentistDateReserve({
           ))}
         </Select>
       </div>
-      <div className="rounded-lg space-x-5 space-y-2 w-full flex flex-row justify-center m-3 text-center">
+      <div className=" h-fit rounded-[16px] flex flex-row w-1/2 ">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            className="bg-white"
+            
+            className="bg-white rounded-[16px]" // เพิ่ม className เพื่อกำหนดสีพื้นหลังเป็นสีขาว
             value={reserveDate ? dayjs(reserveDate) : null}
             onChange={(value) => {
               const selectedDate = dayjs(value);
