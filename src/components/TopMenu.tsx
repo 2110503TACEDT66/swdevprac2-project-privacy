@@ -20,11 +20,11 @@ export default function TopMenu() {
   return (
     <div className="flex flex-row h-[50px] bg-teal-900 z-30 fixed top-0 right-0 left-0">
 
-      <div className="flex flex-row justify-start  h-[50px] w-1/3 ml-2">
+      <div className="flex flex-row justify-start h-[50px] w-1/3 ml-2">
       {session ? (
             <TopMenuItem title={`Sign-Out of ${session.user.name}`} onLogout={() => setIsLogout(!isLogout)}/>
           ) : (
-            <div className="flex flex-row h-[50px] ">
+            <div className="flex flex-row h-[50px]">
               <TopMenuItem title="Sign-In" pageRef="/login" />
               <TopMenuItem title="Sign-Up" pageRef="/register" />
             </div>
