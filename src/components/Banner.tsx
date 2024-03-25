@@ -19,7 +19,7 @@ export default function Banner() {
                     <div>perfect fit</div>
                     <div className='text-6xl tracking-normal'>with us</div>
                 </h1>
-                <button className='mb-[5px] bg-white text-gray-500 border-2 border-gray-500 py-2 px-5 rounded-full z-30 hover:bg-[#107557] hover:text-white hover:border-transparent' onClick={(e)=>{e.stopPropagation(); router.push('/hospital')}}>
+                <button className='mb-[5px] bg-white text-gray-500 border-2 border-gray-500 py-2 px-5 rounded-full z-30 hover:bg-[#107557] hover:text-white hover:border-transparent' onClick={(e)=>{e.stopPropagation(); router.push('/dentist')}}>
                     Select Dentist &gt;
                 </button>
             </div>
