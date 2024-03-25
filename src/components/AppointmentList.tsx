@@ -1,7 +1,5 @@
 'use client'
-import { useAppSelector, AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
-import { removeBooking } from "@/redux/features/bookSlice";
 import { useEffect, useState } from "react";
 import { Appointment, Appointments, DentistItem } from "../../interface";
 import getAppointments from "@/libs/getAppointments";
@@ -14,7 +12,6 @@ import { useRouter } from "next/navigation";
 export default function AppointmentList() {
 
     const [bookingItems , setBookingItems] = useState<Appointment[]>([]);
-    const dispatch = useDispatch<AppDispatch>()
     const {data:session} = useSession()
     const [loading, setLoading] = useState(false);
     const [refresh , setRefresh] = useState(false);

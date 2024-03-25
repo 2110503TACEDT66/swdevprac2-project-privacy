@@ -7,8 +7,6 @@ import getUserProfile from "@/libs/getUserProfile";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
-import { addBooking } from "@/redux/features/bookSlice";
 import { Appointment } from "../../../interface";
 import DentistDateReserve from "@/components/DentistDateReserve";
 import addAppointment from "@/libs/addAppointment";
@@ -18,7 +16,6 @@ import LoadingProgress from "@/components/LoadingProgress";
 export default function Booking() {
     const { data : session } = useSession();
 
-    const dispatch = useDispatch<AppDispatch>();
     const [bookingDentist, setBookingDentist] = useState<string>("");
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
     const [loading, setLoading] = useState(false);
