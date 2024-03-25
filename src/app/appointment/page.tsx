@@ -13,6 +13,7 @@ import { Appointment } from "../../../interface";
 import DentistDateReserve from "@/components/DentistDateReserve";
 import addAppointment from "@/libs/addAppointment";
 import { useSession } from "next-auth/react";
+import LoadingProgress from "@/components/LoadingProgress";
 
 export default function Booking() {
     const { data : session } = useSession();
@@ -29,12 +30,17 @@ export default function Booking() {
     const [bookingId, setBookingId] = useState<string>("");
     const [bookingDentist, setBookingDentist] = useState<string>("");
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
-
-    const makeAppointment = () => {
+    const [loading, setLoading] = useState(false);
+    const makeAppointment = async () => {
+        setLoading(true);
         if(session){
-            if(bookingDate!==null && bookingDentist!=="")
-                addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist, session?.user._id, session?.user.token)
+            if(bookingDate!==null && bookingDentist!==""){
+                await addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist, session?.user._id, session?.user.token);
+                setBookingDate(null); 
+                setBookingDentist("");
+            }
         }
+        setLoading(false);
     }
 
     return (
@@ -59,7 +65,7 @@ export default function Booking() {
                 <button name='Book Vaccine' type="button" 
                 className="font-semibold bg-cyan-700 text-yellow-100 rounded-md m-3 p-3" onClick={makeAppointment}>Book Vaccine</button>
             </form>
-            
+            <LoadingProgress show={loading} />
         </main>
     )
 }
