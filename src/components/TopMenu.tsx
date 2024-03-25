@@ -17,40 +17,29 @@ export default function TopMenu() {
   const { data: session } = useSession();
   console.log(session);
   return (
-    <div className=" h-[50px]  text-cyan-800 bg-transparent fixed top-0 left-0 right-0 z-30 border-y border-solid border-gray-200 flex flex-row-reverse">
-      <Link href={"/"}>
-        <Image
-          src={"/img/logo.png"}
-          className="h-full w-auto"
-          alt="logo"
-          width={0}
-          height={0}
-          sizes="100vh"
-        />
-      </Link>
-      <TopMenuItem title="appointment" pageRef="/appointment" />
-      <div className="flex flex-row absolute left-3 h-full text-center my-auto font-sans text-xs text-gray">
-        {session ? (
-          <TopMenuItem
-            title={`Sign-Out of ${session.user.name}`}
-            onLogout={() => setIsLogout(!isLogout)}
-          />
-        ) : (
-          <>
-            <TopMenuItem title="Sign-In" pageRef="/login" />
-            <TopMenuItem title="Sign-Up" pageRef="/register" />
-          </>
-        )}
-        <TopMenuItem title="My Appointment" pageRef="/myappointment" />
+    <div className=" h-[50px] text-cyan-800 bg-teal-900 fixed top-0 left-0 right-0 z-30 flex flex-row-reverse">
+      <div>
+        
       </div>
-      <ConfirmLogout
-        show={isLogout}
-        onCancel={() => setIsLogout(false)}
-        onConfirm={() => {
-          setIsLogout(false);
-          signOut({ redirect: false });
-        }}
-      />
+      <div className=" h-[50px] text-cyan-800 bg-teal-900 fixed top-0 left-0 right-0 z-30 flex flex-row-reverse">
+        <Link href={"/"}>
+          <Image src={"/img/logo.png"} className="h-full w-auto p-1" alt="logo" width={0} height={0} sizes="100vh"/>
+        </Link>
+        <TopMenuItem title="appointment" pageRef="/appointment" />
+        <div className="flex flex-row absolute left-3 h-full text-center my-auto font-sans text-xs text-gray">
+          {session ? (
+            <TopMenuItem title={`Sign-Out of ${session.user.name}`} onLogout={() => setIsLogout(!isLogout)}/>
+          ) : (
+            <>
+              <TopMenuItem title="Sign-In" pageRef="/login" />
+              <TopMenuItem title="Sign-Up" pageRef="/register" />
+            </>
+          )}
+          <TopMenuItem title="My Appointment" pageRef="/myappointment" />
+        </div>
+        <ConfirmLogout show={isLogout} onCancel={() => setIsLogout(false)} 
+        onConfirm={() => { setIsLogout(false); signOut({ redirect: false })}}/>
+      </div>
     </div>
   );
 }

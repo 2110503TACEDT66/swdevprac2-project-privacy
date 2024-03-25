@@ -12,7 +12,7 @@ export default function TopMenuItem({
   if (!pageRef && onLogout) {
     return (
       <div
-        className="w-[120px] text-center my-auto font-sans text-xs text-gray cursor-pointer"
+        className="w-[120px] text-center my-auto font-sans text-xs text-yellow-50 cursor-pointer"
         onClick={() => onLogout()}
       >
         {title}
@@ -23,7 +23,7 @@ export default function TopMenuItem({
   if (pageRef) {
     return (
       <Link
-        className="w-[120px] text-center my-auto font-sans text-xs text-gray"
+        className="w-[120px] text-center my-auto font-sans text-xs text-yellow-50"
         href={pageRef}
       >
         {title}
