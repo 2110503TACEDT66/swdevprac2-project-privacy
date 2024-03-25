@@ -8,7 +8,7 @@ export default function hospital(){
     const hospitals = getDentists();
     return(
         <main className="p-5">
-            <h1 className="text-center text-xl font-medium text-cyan-700">Select Your Hospital</h1>
+            <h1 className="text-center text-3xl font-semibold mb-5 text-[#107557]">Select Your Hospital</h1>
             <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
                 <HospitalCatalog hospitalsJson={hospitals}/>
             </Suspense>
