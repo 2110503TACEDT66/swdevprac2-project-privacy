@@ -19,9 +19,17 @@ export interface Appointment {
   _id: string;
   apptDate: Date;
   user: string; // เป็น ObjectID ของผู้ใช้
-  dentist: string; // เป็น ObjectID ของหมอฟัน
+  dentist: DentistItem; // เป็น ObjectID ของหมอฟัน
   createdAt: Date;
   __v: number;
+}
+
+
+
+export interface Appointments {
+  success: boolean,
+  count: number,
+  data: Appointment[]
 }
 
 export interface Credentials {
