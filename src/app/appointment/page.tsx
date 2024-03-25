@@ -15,7 +15,7 @@ export default function Appointment() {
   const [bookingDentist, setBookingDentist] = useState<string>("");
   const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
   const [loading, setLoading] = useState(false);
-  const [apptItem, setApptItem] = useState<number>(1);
+  const [apptItem, setApptItem] = useState<number>(0);
 
   useEffect(() => {
     const fetchAppointments = async () => {
