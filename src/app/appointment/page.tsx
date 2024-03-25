@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { addBooking } from "@/redux/features/bookSlice";
 import { BookingItem } from "../../../interface";
+import DentistDateReserve from "@/components/DentistDateReserve";
 
 export default function Booking() {
 
@@ -24,7 +25,7 @@ export default function Booking() {
     const [bookingName, setBookingName] = useState<string>("");
     const [bookingSurname, setBookingSurname] = useState<string>("");
     const [bookingId, setBookingId] = useState<string>("");
-    const [bookingHospital, setBookingHospital] = useState<string>("");
+    const [bookingDentist, setBookingDentist] = useState<string>("");
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
 
     const makeBooking = () => {
@@ -59,12 +60,13 @@ export default function Booking() {
                 <TextField name="Name" label="Name" variant="standard" value={bookingName} className="m-3" onChange={(e) => setBookingName(e.target.value)}/>
                 <TextField name="Lastname" label="Lastname" variant="standard" value={bookingSurname} className="m-3" onChange={(e) => setBookingSurname(e.target.value)}/>
                 <TextField name="Citizen ID" label="Citizen ID" variant="standard" value={bookingId} className="m-3" onChange={(e) => setBookingId(e.target.value)}/>
-                <Select variant='standard' name='hospital' id='hospital' value={bookingHospital} className="h-[2em] w-[100] m-3" onChange={(e) => setBookingHospital(e.target.value)}>
+                <DentistDateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}} onDentistChange={(value:string) => {setBookingDentist(value)}}/>
+                {/* <Select variant='standard' name='hospital' id='hospital' value={bookingHospital} className="h-[2em] w-[100] m-3" onChange={(e) => setBookingHospital(e.target.value)}>
                     <MenuItem value="Chula">Chulalongkorn Hospital</MenuItem>
                     <MenuItem value="Rajavithi">Rajavithi Hospital</MenuItem>
                     <MenuItem value="Thammasat">Thammasat University Hospital</MenuItem>
                 </Select>
-                <DateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}}/>
+                <DateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}}/> */}
                 <button name='Book Vaccine' type="button" className="font-semibold bg-cyan-700 text-yellow-100 rounded-md m-3 p-3" onClick={makeBooking}>Book Vaccine</button>
             </form>
             

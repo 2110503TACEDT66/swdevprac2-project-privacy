@@ -3,7 +3,7 @@ export interface DentistItem {
     name: string,
     years_of_experience: number,
     area_of_expertise: string,
-    picture: string;
+    picture: string,
     appointments: Appointment[],
     id: string
   }

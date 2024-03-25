@@ -8,7 +8,7 @@ export default function PromoteCard() {
 
     const [playing, setPlaying] = useState(true);
 
-    useWindowListener('contextmenu', (e) => {e.preventDefault()})
+    // useWindowListener('contextmenu', (e) => {e.preventDefault()})
 
     return (
         <div className="w-[80%] shadow-lg mx-[10%] my-10 p-2 rounded-lg bg-gray-200 flex flex-row">
