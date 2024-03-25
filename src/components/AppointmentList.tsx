@@ -63,7 +63,7 @@ export default function AppointmentList() {
                     <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => deletemyAppointment(item._id)}>
                         Remove
                     </button>
-                    <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => dispatch(removeBooking(item._id))}>
+                    <button className='h-[10%] text-sm rounded-md bg-cyan-800 hover:bg-slate-700 m-2 p-2 text-white shadow-sm' onClick = {() => router.replace(`/appointment/${item._id}`)}>
                         Edit
                     </button>
                 </div>
