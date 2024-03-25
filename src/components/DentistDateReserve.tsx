@@ -8,59 +8,43 @@ import { Dayjs } from "dayjs";
 import getDentists from "@/libs/getDentists";
 import { DentistItem } from "../../interface";
 
-export default function DentistDateReserve({
-  onDateChange,
-  onDentistChange,
-}: {
-  onDateChange: Function;
-  onDentistChange: Function;
-}) {
-  const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
-  const [dentist, setDentist] = useState<string>("");
-  const [dentists, setDentists] = useState<DentistItem[]>([]);
+export default function DentistDateReserve({ onDateChange, onDentistChange,}: { onDateChange: Function, onDentistChange: Function}) {
+    
+    const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
+    const [dentist, setDentist] = useState<string>("");
+    const [dentists, setDentists] = useState<DentistItem[]>([]);
 
-  useEffect(() => {
-    const fetchDentists = async () => {
-      try {
-        const data = await getDentists();
-        setDentists(data.data);
-      } catch (error) {
-        console.error("Failed to fetch dentists:", error);
-      }
-    };
+    useEffect(() => {
+        const fetchDentists = async () => {
+            try {
+                const data = await getDentists();
+                setDentists(data.data);
+            } catch (error) {
+                console.error("Failed to fetch dentists:", error);
+            }
+        };
 
-    fetchDentists();
-  }, []);
-  return (
-    <div className="bg-slate-100 rounded-lg space-x-5 space-y-2 w-fit px-10 py-5 flex flex-row justify-center">
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-          className="bg-white"
-          value={reserveDate}
-          onChange={(value) => {
-            setReserveDate(value);
-            onDateChange(value);
-          }}
-        />
-      </LocalizationProvider>
+        fetchDentists();
+    }, []);
 
-      <Select
-        variant="standard"
-        name="location"
-        id="location"
-        value={dentist}
-        onChange={(e) => {
-          setDentist(e.target.value);
-          onDentistChange(e.target.value);
-        }}
-        className="h-[2em] w-[200px]"
-      >
-        {dentists.map((dentist: DentistItem) => (
-          <MenuItem key={dentist.id} value={dentist.id}>
-            {dentist.name}
-          </MenuItem>
-        ))}
-      </Select>
+    return (
+    <div>
+        <div>
+            <Select variant="standard" name="location" id="location" value={dentist} className="h-[2em] w-full my-5"
+            onChange={(e) => {setDentist(e.target.value); onDentistChange(e.target.value);}}>
+                {dentists.map((dentist: DentistItem) => (
+                    <MenuItem key={dentist.id} value={dentist.id}>
+                        {dentist.name}
+                    </MenuItem>
+                ))}
+            </Select>
+        </div>
+        <div  className= "rounded-lg space-x-5 space-y-2 w-full flex flex-row justify-center m-3 text-center">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker className="bg-white" value={reserveDate} 
+                onChange={(value) => { setReserveDate(value); onDateChange(value);}}/>
+            </LocalizationProvider>
+        </div>
     </div>
   );
 }

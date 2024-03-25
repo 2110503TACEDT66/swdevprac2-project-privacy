@@ -28,7 +28,7 @@ export default function TopMenu() {
           sizes="100vh"
         />
       </Link>
-      <TopMenuItem title="Booking" pageRef="/appointment" />
+      <TopMenuItem title="appointment" pageRef="/appointment" />
       <div className="flex flex-row absolute left-3 h-full text-center my-auto font-sans text-xs text-gray">
         {session ? (
           <TopMenuItem

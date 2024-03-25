@@ -1,7 +1,7 @@
 import { Dayjs } from "dayjs";
 import { useSession } from "next-auth/react";
 
-export default async function addAppointment(date:Dayjs, dentistId: string) {
+export default async function addAppointment(date:string, dentistId: string) {
     
     const { data : session } = useSession();
 
@@ -24,5 +24,6 @@ export default async function addAppointment(date:Dayjs, dentistId: string) {
     } catch (error) {
         console.log("error in userLogin is ",error);
     }
+    return ({});
 
 }
