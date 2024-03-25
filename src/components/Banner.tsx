@@ -6,14 +6,13 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 export default function Banner() {
-    const covers = ['/img/cover.jpg','/img/cover2.jpg','/img/cover3.jpg','/img/cover4.jpg'];
-    const [index, setIndex] = useState(0);
+    const cover = '/img/cover.jpg';
     const router = useRouter();
 
     const { data : session } = useSession();
     return (
-        <div className={styles.banner} onClick={()=>{setIndex(index+1)}}>
-            <Image className='object-cover' src={covers[index%4]} alt='cover' priority fill={true}/>
+        <div className={styles.banner}>
+            <Image className='object-cover' src={cover} alt='cover' priority fill={true}/>
             <div className="relative mt-[80px] z-20 text-center bg-opacity-45 bg-cyan-50 p-4">
                 <h1 className='text-4xl font-medium text-cyan-950'>Dentist Appointment</h1>
                 <h3 className='text-xl font-serif text-cyan-950'>Let's come and take vaccine</h3>
