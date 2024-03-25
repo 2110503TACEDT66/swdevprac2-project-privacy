@@ -31,8 +31,10 @@ export default function Booking() {
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
 
     const makeAppointment = () => {
-        if(bookingDate!==null && bookingDentist!=="")
-        addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist, session?.user._id, session?.user.token)
+        if(session){
+            if(bookingDate!==null && bookingDentist!=="")
+                addAppointment(dayjs(bookingDate).format("YYYY/MM/DD"), bookingDentist, session?.user._id, session?.user.token)
+        }
     }
 
     return (
