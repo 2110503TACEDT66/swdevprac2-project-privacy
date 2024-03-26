@@ -51,8 +51,6 @@ export default function Appointment() {
             session?.user._id,
             session?.user.token
           );
-          setBookingDate(null);
-          setBookingDentist("");
         } else {
           setError("Cannot book appointment for past dates.");
           setLoading(false);
