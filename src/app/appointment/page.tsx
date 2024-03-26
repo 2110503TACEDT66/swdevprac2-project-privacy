@@ -94,7 +94,7 @@ export default function Appointment() {
           <button
             name="Book Vaccine"
             type="button"
-            className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3"
+            className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3 hover:bg-teal-700"
             onClick={makeAppointment}
           >
             Make Appointment

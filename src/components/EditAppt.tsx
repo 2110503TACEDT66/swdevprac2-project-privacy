@@ -44,7 +44,7 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
                     <DentistDateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}} onDentistChange={(value:string) => {setBookingDentist(value)}} editAppt={editApptkub}/>
                 </div>
                 <button name='Book Vaccine' type="button" 
-                className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3" onClick={editAppointment}>Edit Appointment</button>
+                className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3 hover:bg-teal-700" onClick={editAppointment}>Edit Appointment</button>
             </form>
             <LoadingProgress show={loading} />
         </main>
