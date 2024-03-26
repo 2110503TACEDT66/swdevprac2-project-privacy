@@ -28,7 +28,7 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
               const selectedDate = dayjs(bookingDate);
               if (selectedDate.isAfter(currentDate, 'day')) { 
                 await editmyAppointment(apptId,session.user.token,{date:dayjs(bookingDate).format("YYYY/MM/DD"), dentistId:bookingDentist})
-                
+                router.replace('/myappointment')
               } else {
                 setError("Cannot book appointment for past dates.");
                 setLoading(false);
