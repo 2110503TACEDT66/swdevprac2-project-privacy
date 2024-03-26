@@ -19,20 +19,23 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
     const [bookingDate, setBookingDate] = useState<Dayjs | null>(dayjs(DateAppt));
     const [loading, setLoading] = useState(false);
     const router = useRouter()
-    
+    const [error, setError] = useState<string>("");
     const editAppointment = async () => {
         setLoading(true);
-        if(session){
-            if(bookingDate!==null && bookingDentist!==""){
-                    var re = await editmyAppointment(apptId,session.user.token,{date:dayjs(bookingDate).format("YYYY/MM/DD"), dentistId:bookingDentist});
-
+        if (session) {
+            if (bookingDate !== null && bookingDentist !== "") {
+              const currentDate = dayjs();
+              const selectedDate = dayjs(bookingDate);
+              if (selectedDate.isAfter(currentDate, 'day')) { 
+                await editmyAppointment(apptId,session.user.token,{date:dayjs(bookingDate).format("YYYY/MM/DD"), dentistId:bookingDentist})
                 
-                console.log(re);
+              } else {
+                setError("Cannot book appointment for past dates.");
                 setLoading(false);
-                onRefresh(true)
-                router.replace('/myappointment')
+                return;
+              }
             }
-        }
+          }
         setLoading(false);
     }
 
@@ -45,6 +48,11 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
                 </div>
                 <button name='Book Vaccine' type="button" 
                 className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3 hover:bg-teal-700" onClick={editAppointment}>Edit Appointment</button>
+                {error && (
+            <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+              {error}
+            </div>
+          )}
             </form>
             <LoadingProgress show={loading} />
         </main>
