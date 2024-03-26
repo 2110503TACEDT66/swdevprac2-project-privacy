@@ -7,7 +7,7 @@ export default function MyAppointment() {
     if (session?.user.role==='admin') {
         return (
             <div className="h-full overflow-y-auto bg-[url('/img/apptcover.jpg')] bg-cover flex items-center justify-center ">
-            <main>
+            <main className="mt-5">
                 <AppointmentList></AppointmentList>
             </main>
             </div>
