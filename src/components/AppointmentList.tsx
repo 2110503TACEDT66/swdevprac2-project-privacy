@@ -23,7 +23,6 @@ export default function AppointmentList() {
     try {
       if (session) {
         const res = await deleteAppointment(ApptId, session?.user.token);
-        console.log(res);
         setLoading(false);
         setRefresh(!refresh);
       }
@@ -42,7 +41,6 @@ export default function AppointmentList() {
           if (data) setCheck(true);
           setBookingItems(data.data);
           setLoadingData(false);
-          console.log(data.data);
         } catch (error) {
           console.error("Failed to fetch dentists:", error);
           setLoadingData(false);

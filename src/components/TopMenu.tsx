@@ -18,7 +18,6 @@ export default function TopMenu() {
 
   const [isLogout, setIsLogout] = useState(false);
   const { data: session } = useSession();
-  console.log(session);
   const router = useRouter()
   return (
     <div className="flex flex-row h-[50px] bg-teal-900 z-30 fixed top-0 right-0 left-0">

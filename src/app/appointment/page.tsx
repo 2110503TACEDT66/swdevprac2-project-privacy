@@ -27,8 +27,6 @@ export default function Appointment() {
           const data = await getAppointments(session.user.token);
           setApptItem(data.count);
           setLoadingData(false)
-          console.log({ data });
-          console.log(session);
         } catch (error) {
           console.error("Failed to fetch appointment:", error);
           setLoadingData(false)

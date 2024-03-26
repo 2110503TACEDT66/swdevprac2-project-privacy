@@ -4,6 +4,6 @@ export default async function getDentists() {
         throw new Error("Failed to fetch dentists")
     }
     const data = await response.json();
-
+    console.log(data);
     return data;
 }
