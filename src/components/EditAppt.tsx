@@ -30,6 +30,7 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
                 console.log(re);
                 setLoading(false);
                 onRefresh(true)
+                router.replace('/myappointment')
             }
         }
         setLoading(false);

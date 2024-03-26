@@ -26,11 +26,13 @@ export default function AppointmentList() {
               console.log(res);
               setLoading(false);
               setRefresh(!refresh);
+              
           }
       } catch (error) {
           console.log(error);
           setLoading(false);
       }
+
   };
 
   useEffect(() => {
