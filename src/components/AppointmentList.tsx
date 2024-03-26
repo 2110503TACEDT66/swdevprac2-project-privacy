@@ -62,8 +62,8 @@ export default function AppointmentList() {
       )}
       {bookingItems
         ? bookingItems.map((item: Appointment) => (
-            <div className="flex justify-between self-center bg-lime-50 w-[500px] h-[150px] rounded-[17px] px-5 py-4 my-2">
-              <div className="w-40 flex flex-col text-left mr-4 text-teal-900">
+            <div className="flex justify-between self-center bg-lime-50 w-[500px] h-[150px] rounded-[17px] px-7 py-4 my-2">
+              <div className="w-40 flex flex-col text-left mr-4 text-teal-900 justify-center">
                 <div className="font-semibold text-sm my-1">
                   Name: {item.user.name}
                 </div>
@@ -77,13 +77,13 @@ export default function AppointmentList() {
               <div className="w-60 flex flex-row justify-between items-center">
                 <div className="flex flex-row space-x-5">
                   <button
-                    className="w-[105px] h-[45px]text-sm rounded-md bg-rose-900 hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
+                    className="w-[105px] h-[45px]text-sm rounded-md bg-rose-900 hover:bg-rose-600 m-2 p-2 text-white shadow-sm"
                     onClick={() => deletemyAppointment(item._id)}
                   >
                     Remove
                   </button>
                   <button
-                    className="w-[105px] h-[45px]text-sm rounded-md bg-teal-900 hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
+                    className="w-[105px] h-[45px]text-sm rounded-md bg-teal-900 hover:bg-green-600 m-2 p-2 text-white shadow-sm"
                     onClick={() => router.replace(`/appointment/${item._id}`)}
                   >
                     Edit
