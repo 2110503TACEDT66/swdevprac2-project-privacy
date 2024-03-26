@@ -101,7 +101,7 @@ export default function Appointment() {
             Make Appointment
           </button>
           {error && (
-            <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+            <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2 self-center">
               {error}
             </div>
           )}
