@@ -59,6 +59,7 @@ export default function Appointment() {
             session?.user._id,
             session?.user.token
           );
+          if(session?.user.role==='user') setCheckMake(false);
         } else {
           setError("Cannot book appointment for past dates.");
           setLoading(false);
@@ -67,7 +68,7 @@ export default function Appointment() {
       }
     }
     setLoading(false);
-    if(session?.user.role==='user') setCheckMake(false);
+    
   };
 
   return (
