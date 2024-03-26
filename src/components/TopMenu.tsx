@@ -9,6 +9,9 @@ import Link from "next/link";
 import { useState } from "react";
 import ConfirmLogout from "./ConfirmLogout";
 import { useWindowListener } from "@/hooks/useWindowListener";
+import { redirect } from "next/dist/server/api-utils";
+import { NextResponse } from "next/server";
+import { useRouter } from "next/navigation";
 
 export default function TopMenu() {
   // const session = await getServerSession(authOptions)
@@ -16,7 +19,7 @@ export default function TopMenu() {
   const [isLogout, setIsLogout] = useState(false);
   const { data: session } = useSession();
   console.log(session);
-
+  const router = useRouter()
   return (
     <div className="flex flex-row h-[50px] bg-teal-900 z-30 fixed top-0 right-0 left-0">
 
@@ -43,7 +46,7 @@ export default function TopMenu() {
       </div>
       
       <ConfirmLogout show={isLogout} onCancel={() => setIsLogout(false)} 
-      onConfirm={() => { setIsLogout(false); signOut({ redirect: false })}}/>
+      onConfirm={() => { setIsLogout(false); signOut({ redirect: false }); router.replace('/')}}/>
     </div>
   );
 }
