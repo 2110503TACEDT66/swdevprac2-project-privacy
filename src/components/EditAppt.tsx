@@ -36,12 +36,14 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
     }
 
     return (
-        <main className="flex flex-col items-center">
-            <h1 className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3">Edit an Appointment</h1>
-            <form className="w-[40vw] h-auto bg-[#BED7CF] justify-center rounded-lg flex flex-col p-10">
-                <DentistDateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}} onDentistChange={(value:string) => {setBookingDentist(value)}} editAppt={editApptkub}/>
+        <main className="flex flex-col items-center bg-amber-50 bg-opacity-75 p-2 rounded-lg">
+            <h1 className="text-[35px] m-auto font-bold text-teal-900 rounded-lg pt-4">Edit an Appointment</h1>
+            <form className="w-[60vw] justify-center rounded-lg flex flex-col p-10">
+                <div className="flex-grow flex flex-col justify-center ml-14 ">
+                    <DentistDateReserve onDateChange={(value:Dayjs) => {setBookingDate(value)}} onDentistChange={(value:string) => {setBookingDentist(value)}} editAppt={editApptkub}/>
+                </div>
                 <button name='Book Vaccine' type="button" 
-                className="font-semibold bg-[#107557] text-yellow-100 rounded-md m-3 p-3" onClick={editAppointment}>Book Vaccine</button>
+                className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3" onClick={editAppointment}>Edit Appointment</button>
             </form>
             <LoadingProgress show={loading} />
         </main>

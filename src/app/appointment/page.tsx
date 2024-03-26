@@ -39,7 +39,9 @@ export default function Appointment() {
   }, [session, apptItem]);
 
   if (session?.user.role === "user" && apptItem === 1) {
-    return <div className="text-[20px] m-5 font-bold text-[#107557] rounded-lg p-3 text-center">You have already made an appointment</div>;
+    return <div className="w-screen h-screen text-[20px] font-bold text-neutral-50 p-80 text-center bg-[url('/img/apptcover.jpg')]">
+        <h1 className="bg-teal-950 rounded-sm p-3">You have already made an appointment</h1>
+    </div>;
   }
 
   const makeAppointment = async () => {
@@ -69,8 +71,8 @@ export default function Appointment() {
     <div className="w-screen h-screen bg-cover flex items-center justify-center" style={{backgroundImage: "url('/img/apptcover.jpg')"}}>
       <main>
         {loadingData && <LoadingProgress show={true} />}
-        {!loadingData && <form className="w-[60vw] bg-[#BED7CF] bg-opacity-75 justify-center rounded-lg flex flex-col p-10">
-          <h1 className="text-[35px] m-auto font-bold text-[#107557] rounded-lg p-3 mb-6">
+        {!loadingData && <form className="w-[60vw] bg-amber-50 bg-opacity-75 justify-center rounded-lg flex flex-col p-10">
+          <h1 className="text-[35px] m-auto font-bold text-teal-900 rounded-lg p-3 mb-6">
             Make an Appointment
           </h1>
           <div className="flex-grow flex flex-col justify-center ml-14 ">
@@ -86,10 +88,10 @@ export default function Appointment() {
           <button
             name="Book Vaccine"
             type="button"
-            className="font-semibold bg-[#107557] text-yellow-100 rounded-md m-3 p-3"
+            className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3"
             onClick={makeAppointment}
           >
-            Book Vaccine
+            Make Appointment
           </button>
           {error && (
             <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">

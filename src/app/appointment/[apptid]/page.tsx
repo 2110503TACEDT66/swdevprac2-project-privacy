@@ -31,7 +31,7 @@ export default function EditApptPage({ params }: { params: { apptid: string } })
   };
 
   return (
-    <>
+    <div className="w-screen h-screen bg-cover flex items-center justify-center" style={{backgroundImage: "url('/img/apptcover.jpg')"}}>
       {apptItem && (
         <EditmyAppt
           apptId={apptItem?._id}
@@ -40,6 +40,6 @@ export default function EditApptPage({ params }: { params: { apptid: string } })
           onRefresh={handleRefresh}
         />
       )}
-    </>
+    </div>
   );
 }

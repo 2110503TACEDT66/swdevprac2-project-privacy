@@ -54,30 +54,30 @@ export default function AppointmentList() {
   }, [session, refresh]);
 
     return (
-        <div className="flex flex-col justify-center items-center space-y-4" style={{ fontFamily: 'Jaldi' }}>
-            <p className="text-3xl font-bold text-[#0B4131] py-8">My Appointments</p>
+        <div className="w-[60vw] justify-center text-center rounded-lg flex flex-col p-10">
+            <p className="text-3xl font-bold text-neutral-50 py-8">My Appointment</p>
             {loadingData && <LoadingProgress show={true} />}
-            {!loadingData && bookingItems.length === 0 && <div className="m-4 text-cyan-800">No Appointments</div>}
+            {!loadingData && bookingItems.length === 0 && <div className="text-amber-50 text-l">No Appointments</div>}
             {bookingItems ? (
                 bookingItems.map((item: Appointment) => (
                     <div
-                        className="bg-[#BED7CF] bg-opacity-75 w-[500px] h-[150px] rounded-[17px] px-5 py-4 my-2 flex flex-col sm:flex-row justify-between items-center"
+                        className="bg-lime-50 w-[500px] h-[150px] rounded-[17px] px-5 py-4 my-2 flex flex-row sm:flex-row justify-center items-center self-center"
                         key={item._id}
                     >
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-left mr-4 text-teal-900">
                             <div className="font-semibold text-sm my-1">Name: {item.user.name}</div>
                             <div className="font-semibold text-sm my-1">Dentist: {item.dentist.name}</div>
                             <div className="font-semibold text-sm my-1">Date: {dayjs(item.apptDate).format("YYYY/MM/DD")}</div>
                         </div>
                         <div className="flex flex-row mt-4 sm:mt-0 space-x-5">
                             <button
-                                className="w-[105px] h-[45px]text-sm rounded-md bg-[#D24F4F] hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
+                                className="w-[105px] h-[45px]text-sm rounded-md bg-rose-900 hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
                                 onClick={() => deletemyAppointment(item._id)}
                             >
                                 Remove
                             </button>
                             <button
-                                className="w-[105px] h-[45px]text-sm rounded-md bg-[#107557] hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
+                                className="w-[105px] h-[45px]text-sm rounded-md bg-teal-900 hover:bg-slate-700 m-2 p-2 text-white shadow-sm"
                                 onClick={() => router.replace(`/appointment/${item._id}`)}
                             >
                                 Edit
