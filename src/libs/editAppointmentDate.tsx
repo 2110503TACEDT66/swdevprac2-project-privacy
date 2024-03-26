@@ -13,7 +13,7 @@ export default async function editmyAppointment(ApptId:string,token:string,optio
     if (dentistId) {
         bodyData['dentist'] = dentistId;
     }
-    const response = await fetch(`https://privacy-backend.vercel.app/api/v1/appointments/${ApptId}`,{
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/appointments/${ApptId}`,{
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

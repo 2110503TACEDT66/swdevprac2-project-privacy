@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 export default async function addAppointment(date:string, dentistId: string, userId: string, userToken: string) {
     
     try { 
-        const response = await fetch(`https://privacy-backend.vercel.app/api/v1/dentists/${dentistId}/appointments`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/api/v1/dentists/${dentistId}/appointments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

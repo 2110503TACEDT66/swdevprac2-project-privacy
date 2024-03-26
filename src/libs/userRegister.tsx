@@ -1,7 +1,7 @@
 export default async function userRegister(userName:string,userEmail:string, userPassword:string,userTel:string) {
     try {
         console.log("entry to register");
-        const response = await fetch("https://privacy-backend.vercel.app/api/v1/auth/register", {
+        const response = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

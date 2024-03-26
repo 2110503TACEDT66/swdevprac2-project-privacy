@@ -1,6 +1,6 @@
 export default async function getAppointment(token:string,apptid:string) {
     
-    const response = await fetch(`https://privacy-backend.vercel.app/api/v1/appointments/${apptid}`,{
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/appointments/${apptid}`,{
         method: "GET",
         headers: {
             authorization: `Bearer ${token}`,
