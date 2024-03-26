@@ -49,7 +49,7 @@ export default function EditmyAppt({apptId,DentistName,DateAppt,onRefresh}:{appt
                 <button name='Book Vaccine' type="button" 
                 className="font-semibold bg-teal-900 text-amber-50 rounded-md m-3 p-3 hover:bg-teal-700" onClick={editAppointment}>Edit Appointment</button>
                 {error && (
-            <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2">
+            <div className="text-center bg-rose-700 w-fit text-sm text-white py-1 px-3 rounded-md mt-2 self-center">
               {error}
             </div>
           )}
