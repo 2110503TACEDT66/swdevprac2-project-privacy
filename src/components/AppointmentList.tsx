@@ -10,49 +10,55 @@ import LoadingProgress from "./LoadingProgress";
 import { useRouter } from "next/navigation";
 
 export default function AppointmentList() {
-    const [bookingItems, setBookingItems] = useState<Appointment[]>([]);
-    const { data: session } = useSession();
-    const [loading, setLoading] = useState(false);
-    const [refresh, setRefresh] = useState(false);
-    const router = useRouter();
-    const [check, setCheck] = useState(false);
+  const [bookingItems, setBookingItems] = useState<Appointment[]>([]);
+  const { data: session } = useSession();
+  const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const router = useRouter();
+  const [check, setCheck] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
 
-    const deletemyAppointment = async (ApptId: string) => {
-        setLoading(true);
-        try {
-            if (session) {
-                const res = await deleteAppointment(ApptId, session?.user.token);
-                console.log(res);
-                setLoading(false);
-                setRefresh(!refresh);
-            }
-        } catch (error) {
-            console.log(error);
-            setLoading(false);
-        }
-    };
+  const deletemyAppointment = async (ApptId: string) => {
+      setLoading(true);
+      try {
+          if (session) {
+              const res = await deleteAppointment(ApptId, session?.user.token);
+              console.log(res);
+              setLoading(false);
+              setRefresh(!refresh);
+          }
+      } catch (error) {
+          console.log(error);
+          setLoading(false);
+      }
+  };
 
-    useEffect(() => {
-        if (session) {
-            const fetchAppointments = async () => {
-                try {
-                    const data = await getAppointments(session.user.token);
-                    if (data) setCheck(true);
-                    setBookingItems(data.data);
-                    console.log(data.data);
-                } catch (error) {
-                    console.error("Failed to fetch dentists:", error);
-                }
-            };
+  useEffect(() => {
+      if (session) {
+          const fetchAppointments = async () => {
+              setLoadingData(true);
+              try {
+                  const data = await getAppointments(session.user.token);
+                  if (data) setCheck(true);
+                  setBookingItems(data.data);
+                  setLoadingData(false);
+                  console.log(data.data);
+              } catch (error) {
+                  console.error("Failed to fetch dentists:", error);
+                  setLoadingData(false); 
+              }
+          };
 
-            fetchAppointments();
-        }
-    }, [refresh]);
+          fetchAppointments();
+      }
+  }, [session, refresh]);
 
     return (
         <div className="flex flex-col justify-center items-center space-y-4" style={{ fontFamily: 'Jaldi' }}>
             <p className="text-3xl font-bold text-[#0B4131] py-8">My Appointments</p>
-            {bookingItems.length > 0 ? (
+            {loadingData && <LoadingProgress show={true} />}
+            {!loadingData && bookingItems.length === 0 && <div className="m-4 text-cyan-800">No Appointments</div>}
+            {bookingItems ? (
                 bookingItems.map((item: Appointment) => (
                     <div
                         className="bg-[#BED7CF] bg-opacity-75 w-[500px] h-[150px] rounded-[17px] px-5 py-4 my-2 flex flex-col sm:flex-row justify-between items-center"
@@ -80,7 +86,7 @@ export default function AppointmentList() {
                     </div>
                 ))
             ) : (
-                <div className="m-4 text-cyan-800">No Appointments</div>
+                null
             )}
             <LoadingProgress show={loading} />
         </div>

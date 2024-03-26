@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import getAppointment from "@/libs/getAppointment";
 import getAppointments from "@/libs/getAppointments";
+import { LinearProgress } from "@mui/material";
 
 export default function Appointment() {
   const { data: session } = useSession();
@@ -16,17 +17,20 @@ export default function Appointment() {
   const [loading, setLoading] = useState(false);
   const [apptItem, setApptItem] = useState<number>(0);
   const [error, setError] = useState<string>("");
-
+  const [loadingData, setLoadingData] = useState(true);
   useEffect(() => {
     const fetchAppointments = async () => {
+      setLoadingData(true)
       if (session) {
         try {
           const data = await getAppointments(session.user.token);
           setApptItem(data.count);
+          setLoadingData(false)
           console.log({ data });
           console.log(session);
         } catch (error) {
           console.error("Failed to fetch appointment:", error);
+          setLoadingData(false)
         }
       }
     };
@@ -64,7 +68,8 @@ export default function Appointment() {
   return (
     <div className="w-screen h-screen bg-cover flex items-center justify-center" style={{backgroundImage: "url('/img/apptcover.jpg')"}}>
       <main>
-        <form className="w-[60vw] bg-[#BED7CF] bg-opacity-75 justify-center rounded-lg flex flex-col p-10">
+        {loadingData && <LoadingProgress show={true} />}
+        {!loadingData && <form className="w-[60vw] bg-[#BED7CF] bg-opacity-75 justify-center rounded-lg flex flex-col p-10">
           <h1 className="text-[35px] m-auto font-bold text-[#107557] rounded-lg p-3 mb-6">
             Make an Appointment
           </h1>
@@ -91,7 +96,7 @@ export default function Appointment() {
               {error}
             </div>
           )}
-        </form>
+        </form>}
         <LoadingProgress show={loading} />
       </main>
     </div>
