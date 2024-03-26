@@ -40,7 +40,7 @@ export default function Appointment() {
   }, [session, apptItem, checkMake]);
 
   if (session?.user.role === "user" && apptItem === 1) {
-    return <div className="w-screen h-screen text-[20px] font-bold text-neutral-50 p-80 text-center bg-[url('/img/apptcover.jpg')]">
+    return <div className="w-screen h-screen text-[20px] font-bold text-neutral-50 p-80 text-center bg-cover bg-[url('/img/apptcover.jpg')]">
         <h1 className="bg-teal-950 rounded-sm p-3">You have already made an appointment</h1>
     </div>;
   }
