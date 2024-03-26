@@ -56,7 +56,7 @@ export default function AppointmentList() {
   return (
     <div className="w-[60vw] justify-center text-center rounded-lg flex flex-col p-10">
       <p className="text-3xl font-bold text-neutral-50 py-8">My Appointment</p>
-      {loadingData && <LoadingProgress show={true} />}
+      {loadingData && <div className="w-screen h-screen"><LoadingProgress show={true} /></div>}
       {!loadingData && bookingItems.length === 0 && (
         <div className="text-amber-50 text-l">No Appointments</div>
       )}
